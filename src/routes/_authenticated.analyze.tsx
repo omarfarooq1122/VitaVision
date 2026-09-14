@@ -297,15 +297,62 @@ function Analyze() {
                 <div className="scanline absolute inset-x-0 top-0 h-14 bg-linear-to-b from-primary/40 to-transparent" />
               ) : null}
             </div>
+          ) : cameraOn ? (
+            <div className="relative overflow-hidden rounded-xl border border-border bg-ink">
+              <video
+                ref={videoRef}
+                playsInline
+                muted
+                autoPlay
+                className="max-h-96 w-full object-contain"
+              />
+              <div className="pointer-events-none absolute inset-6 rounded-xl border border-primary/40" />
+              <div className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-3 bg-linear-to-t from-ink/90 to-transparent p-4">
+                <button
+                  type="button"
+                  onClick={stopCamera}
+                  aria-label="Close camera"
+                  className="grid size-10 place-items-center rounded-full border border-border bg-white/10 text-foreground"
+                >
+                  <X className="size-4" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  onClick={capture}
+                  className="grid size-16 place-items-center rounded-full bg-primary text-primary-foreground ring-4 ring-primary/30 transition-transform hover:scale-105"
+                  aria-label="Take photo"
+                >
+                  <Camera className="size-6" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => startCamera(facing === "environment" ? "user" : "environment")}
+                  aria-label="Switch camera"
+                  className="grid size-10 place-items-center rounded-full border border-border bg-white/10 text-foreground"
+                >
+                  <RefreshCw className="size-4" aria-hidden="true" />
+                </button>
+              </div>
+            </div>
           ) : (
-            <button
-              type="button"
-              onClick={() => inputRef.current?.click()}
-              className="grid w-full place-items-center gap-2 rounded-xl border border-dashed border-border bg-white/[0.03] py-14 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
-            >
-              <ImagePlus className="size-6" aria-hidden="true" />
-              Choose a food photo (JPG, PNG or WebP, up to 8 MB)
-            </button>
+            <div className="grid gap-3">
+              <button
+                type="button"
+                onClick={() => startCamera()}
+                className="grid w-full place-items-center gap-2 rounded-xl border border-dashed border-border bg-white/[0.03] py-14 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
+              >
+                <Camera className="size-6" aria-hidden="true" />
+                Open camera and take a photo of your meal
+              </button>
+              <button
+                type="button"
+                onClick={() => inputRef.current?.click()}
+                className="inline-flex items-center justify-center gap-2 text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+              >
+                <ImagePlus className="size-3.5" aria-hidden="true" />
+                Or upload an existing photo (JPG, PNG or WebP, up to 8 MB)
+              </button>
+            </div>
           )}
         </div>
 
