@@ -379,11 +379,12 @@ function Analyze() {
                 setFile(null);
                 setPreview(null);
                 if (inputRef.current) inputRef.current.value = "";
+                void startCamera();
               }}
               disabled={busy}
               className="rounded-lg border border-border bg-white/5 px-4 py-2.5 text-sm disabled:opacity-60"
             >
-              Choose another
+              Retake photo
             </button>
           ) : null}
         </div>
