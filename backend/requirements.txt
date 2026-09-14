@@ -1,0 +1,22 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+pydantic-settings==2.7.1
+python-multipart==0.0.20
+numpy==2.1.3
+opencv-python-headless==4.10.0.84
+pillow==11.0.0
+httpx==0.28.1
+PyJWT[crypto]==2.10.1
+python-dotenv==1.0.1
+slowapi==0.1.9
+
+# Inference stack. Install the CPU or CUDA torch build that matches your machine:
+#   CPU:  pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   CUDA: see https://pytorch.org/get-started/locally/
+torch==2.5.1
+ultralytics==8.3.55
+
+# Tests
+pytest==8.3.4
+pytest-asyncio==0.25.0
