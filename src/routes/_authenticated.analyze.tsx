@@ -64,6 +64,81 @@ function Analyze() {
   const [status, setStatus] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const streamRef = useRef<MediaStream | null>(null);
+  const [cameraOn, setCameraOn] = useState(false);
+  const [facing, setFacing] = useState<"environment" | "user">("environment");
+
+  const stopCamera = useCallback(() => {
+    streamRef.current?.getTracks().forEach((t) => t.stop());
+    streamRef.current = null;
+    if (videoRef.current) videoRef.current.srcObject = null;
+    setCameraOn(false);
+  }, []);
+
+  const startCamera = useCallback(
+    async (mode: "environment" | "user" = facing) => {
+      setError(null);
+      if (!navigator.mediaDevices?.getUserMedia) {
+        setError("This device or browser can't open the camera. You can upload a photo instead.");
+        return;
+      }
+      try {
+        streamRef.current?.getTracks().forEach((t) => t.stop());
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { ideal: mode }, width: { ideal: 1280 }, height: { ideal: 1280 } },
+          audio: false,
+        });
+        streamRef.current = stream;
+        setFacing(mode);
+        setCameraOn(true);
+        setFile(null);
+        setPreview(null);
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+          await videoRef.current.play().catch(() => {});
+        }
+      } catch {
+        setError(
+          "Camera access was blocked. Allow camera permission in your browser, or upload a photo instead.",
+        );
+      }
+    },
+    [facing],
+  );
+
+  useEffect(() => () => stopCamera(), [stopCamera]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (cameraOn && video && streamRef.current && !video.srcObject) {
+      video.srcObject = streamRef.current;
+      void video.play().catch(() => {});
+    }
+  }, [cameraOn]);
+
+  async function capture() {
+    const video = videoRef.current;
+    if (!video || !video.videoWidth) return;
+    const canvas = document.createElement("canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const blob = await new Promise<Blob | null>((resolve) =>
+      canvas.toBlob((b) => resolve(b), "image/jpeg", 0.92),
+    );
+    if (!blob) {
+      setError("Could not capture that frame. Please try again.");
+      return;
+    }
+    const shot = new File([blob], `meal-${Date.now()}.jpg`, { type: "image/jpeg" });
+    stopCamera();
+    setFile(shot);
+    setPreview(URL.createObjectURL(shot));
+  }
+
   function pick(selected: File | null) {
     setError(null);
     if (!selected) return;
