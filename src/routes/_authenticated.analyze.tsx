@@ -1,9 +1,9 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import { ImagePlus, Loader2 } from "lucide-react";
+import { Camera, ImagePlus, Loader2, RefreshCw, X } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { detectFoodItems } from "@/lib/detect.functions";
@@ -63,6 +63,81 @@ function Analyze() {
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const streamRef = useRef<MediaStream | null>(null);
+  const [cameraOn, setCameraOn] = useState(false);
+  const [facing, setFacing] = useState<"environment" | "user">("environment");
+
+  const stopCamera = useCallback(() => {
+    streamRef.current?.getTracks().forEach((t) => t.stop());
+    streamRef.current = null;
+    if (videoRef.current) videoRef.current.srcObject = null;
+    setCameraOn(false);
+  }, []);
+
+  const startCamera = useCallback(
+    async (mode: "environment" | "user" = facing) => {
+      setError(null);
+      if (!navigator.mediaDevices?.getUserMedia) {
+        setError("This device or browser can't open the camera. You can upload a photo instead.");
+        return;
+      }
+      try {
+        streamRef.current?.getTracks().forEach((t) => t.stop());
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { ideal: mode }, width: { ideal: 1280 }, height: { ideal: 1280 } },
+          audio: false,
+        });
+        streamRef.current = stream;
+        setFacing(mode);
+        setCameraOn(true);
+        setFile(null);
+        setPreview(null);
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+          await videoRef.current.play().catch(() => {});
+        }
+      } catch {
+        setError(
+          "Camera access was blocked. Allow camera permission in your browser, or upload a photo instead.",
+        );
+      }
+    },
+    [facing],
+  );
+
+  useEffect(() => () => stopCamera(), [stopCamera]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (cameraOn && video && streamRef.current && !video.srcObject) {
+      video.srcObject = streamRef.current;
+      void video.play().catch(() => {});
+    }
+  }, [cameraOn]);
+
+  async function capture() {
+    const video = videoRef.current;
+    if (!video || !video.videoWidth) return;
+    const canvas = document.createElement("canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const blob = await new Promise<Blob | null>((resolve) =>
+      canvas.toBlob((b) => resolve(b), "image/jpeg", 0.92),
+    );
+    if (!blob) {
+      setError("Could not capture that frame. Please try again.");
+      return;
+    }
+    const shot = new File([blob], `meal-${Date.now()}.jpg`, { type: "image/jpeg" });
+    stopCamera();
+    setFile(shot);
+    setPreview(URL.createObjectURL(shot));
+  }
 
   function pick(selected: File | null) {
     setError(null);
@@ -222,15 +297,62 @@ function Analyze() {
                 <div className="scanline absolute inset-x-0 top-0 h-14 bg-linear-to-b from-primary/40 to-transparent" />
               ) : null}
             </div>
+          ) : cameraOn ? (
+            <div className="relative overflow-hidden rounded-xl border border-border bg-ink">
+              <video
+                ref={videoRef}
+                playsInline
+                muted
+                autoPlay
+                className="max-h-96 w-full object-contain"
+              />
+              <div className="pointer-events-none absolute inset-6 rounded-xl border border-primary/40" />
+              <div className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-3 bg-linear-to-t from-ink/90 to-transparent p-4">
+                <button
+                  type="button"
+                  onClick={stopCamera}
+                  aria-label="Close camera"
+                  className="grid size-10 place-items-center rounded-full border border-border bg-white/10 text-foreground"
+                >
+                  <X className="size-4" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  onClick={capture}
+                  className="grid size-16 place-items-center rounded-full bg-primary text-primary-foreground ring-4 ring-primary/30 transition-transform hover:scale-105"
+                  aria-label="Take photo"
+                >
+                  <Camera className="size-6" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => startCamera(facing === "environment" ? "user" : "environment")}
+                  aria-label="Switch camera"
+                  className="grid size-10 place-items-center rounded-full border border-border bg-white/10 text-foreground"
+                >
+                  <RefreshCw className="size-4" aria-hidden="true" />
+                </button>
+              </div>
+            </div>
           ) : (
-            <button
-              type="button"
-              onClick={() => inputRef.current?.click()}
-              className="grid w-full place-items-center gap-2 rounded-xl border border-dashed border-border bg-white/[0.03] py-14 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
-            >
-              <ImagePlus className="size-6" aria-hidden="true" />
-              Choose a food photo (JPG, PNG or WebP, up to 8 MB)
-            </button>
+            <div className="grid gap-3">
+              <button
+                type="button"
+                onClick={() => startCamera()}
+                className="grid w-full place-items-center gap-2 rounded-xl border border-dashed border-border bg-white/[0.03] py-14 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
+              >
+                <Camera className="size-6" aria-hidden="true" />
+                Open camera and take a photo of your meal
+              </button>
+              <button
+                type="button"
+                onClick={() => inputRef.current?.click()}
+                className="inline-flex items-center justify-center gap-2 text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+              >
+                <ImagePlus className="size-3.5" aria-hidden="true" />
+                Or upload an existing photo (JPG, PNG or WebP, up to 8 MB)
+              </button>
+            </div>
           )}
         </div>
 
@@ -257,11 +379,12 @@ function Analyze() {
                 setFile(null);
                 setPreview(null);
                 if (inputRef.current) inputRef.current.value = "";
+                void startCamera();
               }}
               disabled={busy}
               className="rounded-lg border border-border bg-white/5 px-4 py-2.5 text-sm disabled:opacity-60"
             >
-              Choose another
+              Retake photo
             </button>
           ) : null}
         </div>
