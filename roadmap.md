@@ -24,6 +24,7 @@ Legend: [x] done  [ ] open
 ## Stage 4 — UI
 - [x] Replace the text brand mark with the supplied VitaVision logo across shared page headers
 - [x] Straighten the landing page introduction panel
+- [x] Refine the homepage scan preview as a precision inspection panel
 - [ ] Result page: confidence levels, corrections (correct/remove/quantity/serving), recalculation, model info panel
 - [ ] Dashboard: today's overview incl. water, 7-day charts (Recharts), insights
 - [ ] History: date/meal/calorie/logged filters + food search
