@@ -1,12 +1,14 @@
 import { Link } from "@tanstack/react-router";
+import logoAsset from "@/assets/vitavision-logo.png.asset.json";
 
 export function Brand({ to = "/" }: { to?: "/" | "/dashboard" }) {
   return (
-    <Link to={to} className="flex items-center gap-2.5">
-      <span className="grid size-8 place-items-center rounded-lg bg-primary font-display text-primary-foreground">
-        V
-      </span>
-      <span className="font-display text-lg font-medium tracking-tight">VitaVision</span>
+    <Link to={to} aria-label="VitaVision home" className="inline-flex shrink-0 items-center">
+      <img
+        src={logoAsset.url}
+        alt="VitaVision"
+        className="h-9 w-auto max-w-[190px] object-contain sm:h-10 sm:max-w-[220px]"
+      />
     </Link>
   );
 }
