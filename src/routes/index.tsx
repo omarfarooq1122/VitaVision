@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Check, ScanLine } from "lucide-react";
 import { Glow } from "@/components/Glow";
 import { Brand } from "@/components/Brand";
 
@@ -119,30 +120,64 @@ function Landing() {
                 </div>
               </div>
               <div className="md:col-span-5">
-                <div className="rounded-2xl glass-solid p-4">
-                  <div
-                    className="relative overflow-hidden rounded-xl bg-ink outline-1 -outline-offset-1 outline-black/20"
-                    style={{ aspectRatio: "4/3" }}
-                  >
-                    <div className="grid size-full place-items-center">
-                      <span className="text-[10px] font-medium tracking-[0.15em] text-muted-foreground/60 uppercase">
-                        Scan preview
-                      </span>
+                <div className="relative overflow-hidden rounded-2xl border border-border bg-card/90 shadow-2xl">
+                  <div className="flex items-center justify-between border-b border-border bg-card/60 px-4 py-3">
+                    <div>
+                      <p className="text-[9px] font-semibold tracking-[0.16em] text-primary uppercase">
+                        Active analysis
+                      </p>
+                      <h3 className="mt-0.5 text-sm font-semibold">Plate inspection</h3>
                     </div>
-                    <div className="scanline absolute inset-x-0 top-0 h-10 bg-linear-to-b from-primary/40 to-transparent" />
-                    <div className="absolute top-[18%] left-[14%] rounded-md border border-primary px-1.5 py-0.5 text-[10px] font-medium text-primary">
+                    <div className="flex items-center gap-2 font-mono text-[9px] text-muted-foreground">
+                      <span className="relative flex size-2">
+                        <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-60" />
+                        <span className="relative inline-flex size-2 rounded-full bg-primary" />
+                      </span>
+                      LIVE FEED
+                    </div>
+                  </div>
+
+                  <div className="relative aspect-4/3 overflow-hidden bg-ink">
+                    <div className="absolute inset-0 opacity-25 [background-image:linear-gradient(var(--border)_1px,transparent_1px),linear-gradient(90deg,var(--border)_1px,transparent_1px)] [background-size:24px_24px]" />
+                    <div className="absolute top-[12%] left-[21%] size-[62%] rounded-full border border-border bg-card/60 shadow-[inset_0_0_35px_color-mix(in_oklab,var(--primary)_10%,transparent)]">
+                      <div className="absolute top-[17%] left-[16%] h-[42%] w-[30%] rotate-12 rounded-[55%_45%_55%_45%] bg-primary/25 ring-1 ring-primary/50" />
+                      <div className="absolute top-[20%] right-[13%] size-[34%] rounded-full bg-sky/20 ring-1 ring-sky/50" />
+                      <div className="absolute right-[24%] bottom-[14%] h-[20%] w-[42%] rounded-full bg-amber/20 ring-1 ring-amber/50" />
+                    </div>
+
+                    <div className="scanline absolute inset-x-0 top-0 z-10 h-10 bg-linear-to-b from-primary/35 to-transparent" />
+                    <div className="absolute top-[17%] left-[12%] rounded-md border border-primary bg-ink/80 px-1.5 py-0.5 font-mono text-[9px] font-medium text-primary backdrop-blur-sm">
                       Banana · 96%
                     </div>
-                    <div className="absolute top-[46%] right-[12%] rounded-md border border-sky px-1.5 py-0.5 text-[10px] font-medium text-sky">
+                    <div className="absolute top-[43%] right-[8%] rounded-md border border-sky bg-ink/80 px-1.5 py-0.5 font-mono text-[9px] font-medium text-sky backdrop-blur-sm">
                       Oats · 88%
                     </div>
-                    <div className="absolute bottom-[16%] left-[30%] rounded-md border border-amber px-1.5 py-0.5 text-[10px] font-medium text-amber">
+                    <div className="absolute bottom-[12%] left-[25%] rounded-md border border-amber bg-ink/80 px-1.5 py-0.5 font-mono text-[9px] font-medium text-amber backdrop-blur-sm">
                       Almond · 91%
                     </div>
                   </div>
-                  <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
-                    <span>Detected 3 items</span>
-                    <span className="text-primary">Analysis ready</span>
+
+                  <div className="grid grid-cols-3 border-t border-border">
+                    <div className="border-r border-border px-3 py-2.5">
+                      <p className="text-[9px] uppercase text-muted-foreground">Items</p>
+                      <p className="mt-0.5 font-mono text-sm font-medium">03</p>
+                    </div>
+                    <div className="border-r border-border px-3 py-2.5">
+                      <p className="text-[9px] uppercase text-muted-foreground">Top score</p>
+                      <p className="mt-0.5 font-mono text-sm font-medium">96%</p>
+                    </div>
+                    <div className="px-3 py-2.5">
+                      <p className="text-[9px] uppercase text-muted-foreground">Status</p>
+                      <p className="mt-0.5 flex items-center gap-1 text-[11px] font-medium text-primary">
+                        <Check className="size-3" aria-hidden="true" /> Ready
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 border-t border-border bg-background/30 px-4 py-2.5 text-[10px] text-muted-foreground">
+                    <span className="grid size-6 place-items-center rounded-md bg-primary/10 text-primary">
+                      <ScanLine className="size-3.5" aria-hidden="true" />
+                    </span>
+                    Confidence is shown for every detected item
                   </div>
                 </div>
               </div>
