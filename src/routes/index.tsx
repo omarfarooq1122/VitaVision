@@ -77,7 +77,7 @@ function Landing() {
         </header>
 
         <section className="relative mt-10 md:mt-16">
-          <div className="relative -rotate-2 rounded-3xl glass p-8 shadow-2xl sm:p-12 md:-rotate-1">
+          <div className="relative rounded-3xl glass p-8 shadow-2xl sm:p-12">
             <div className="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-primary/60 to-transparent" />
             <div className="grid items-center gap-10 md:grid-cols-12">
               <div className="md:col-span-7">
