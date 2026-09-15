@@ -22,6 +22,7 @@ Legend: [x] done  [ ] open
 - [ ] weight_confidence / estimation_method columns on detected_foods
 
 ## Stage 4 — UI
+- [x] Replace the text brand mark with the supplied VitaVision logo across shared page headers
 - [ ] Result page: confidence levels, corrections (correct/remove/quantity/serving), recalculation, model info panel
 - [ ] Dashboard: today's overview incl. water, 7-day charts (Recharts), insights
 - [ ] History: date/meal/calorie/logged filters + food search
