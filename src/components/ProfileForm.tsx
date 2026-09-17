@@ -3,6 +3,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { TagInput } from "./TagInput";
+import { AppSelect } from "./AppSelect";
 import {
   ACTIVITY_LEVELS,
   COMMON_ALLERGENS,
@@ -176,66 +177,56 @@ export function ProfileForm({
               className={`mt-1.5 ${inputClass}`}
             />
           </label>
-          <label className="block">
+          <div className="block">
             <span className="text-xs font-medium text-muted-foreground">Gender</span>
-            <select
+            <AppSelect
+              id="profile-gender"
               value={draft.gender}
-              onChange={(e) => set("gender", e.target.value)}
-              className={`mt-1.5 ${inputClass}`}
-            >
-              <option value="unspecified">Prefer not to say</option>
-              <option value="female">Female</option>
-              <option value="male">Male</option>
-            </select>
-          </label>
-          <label className="block">
+              onValueChange={(value) => set("gender", value)}
+              options={[
+                { value: "unspecified", label: "Prefer not to say" },
+                { value: "female", label: "Female" },
+                { value: "male", label: "Male" },
+              ]}
+              className="mt-1.5"
+            />
+          </div>
+          <div className="block">
             <span className="text-xs font-medium text-muted-foreground">Activity level</span>
-            <select
+            <AppSelect
+              id="profile-activity"
               value={draft.activity_level}
-              onChange={(e) => set("activity_level", e.target.value)}
-              className={`mt-1.5 ${inputClass}`}
-            >
-              {ACTIVITY_LEVELS.map((a) => (
-                <option key={a.value} value={a.value}>
-                  {a.label}
-                </option>
-              ))}
-            </select>
-          </label>
+              onValueChange={(value) => set("activity_level", value)}
+              options={ACTIVITY_LEVELS}
+              className="mt-1.5"
+            />
+          </div>
         </div>
       </section>
 
       <section className="rounded-2xl glass p-5">
         <h2 className="text-sm font-medium">Goal &amp; routine</h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <label className="block">
+          <div className="block">
             <span className="text-xs font-medium text-muted-foreground">Goal</span>
-            <select
+            <AppSelect
+              id="profile-goal"
               value={draft.goal}
-              onChange={(e) => set("goal", e.target.value)}
-              className={`mt-1.5 ${inputClass}`}
-            >
-              {GOALS.map((g) => (
-                <option key={g.value} value={g.value}>
-                  {g.label}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="block">
+              onValueChange={(value) => set("goal", value)}
+              options={GOALS}
+              className="mt-1.5"
+            />
+          </div>
+          <div className="block">
             <span className="text-xs font-medium text-muted-foreground">Diet preference</span>
-            <select
+            <AppSelect
+              id="profile-diet"
               value={draft.diet_preference}
-              onChange={(e) => set("diet_preference", e.target.value)}
-              className={`mt-1.5 ${inputClass}`}
-            >
-              {DIETS.map((d) => (
-                <option key={d.value} value={d.value}>
-                  {d.label}
-                </option>
-              ))}
-            </select>
-          </label>
+              onValueChange={(value) => set("diet_preference", value)}
+              options={DIETS}
+              className="mt-1.5"
+            />
+          </div>
           <label className="block">
             <span className="text-xs font-medium text-muted-foreground">Meals per day</span>
             <input

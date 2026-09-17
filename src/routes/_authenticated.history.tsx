@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { analysesQuery } from "@/lib/queries";
 import { MEAL_TYPES } from "@/lib/nutrition";
+import { AppSelect } from "@/components/AppSelect";
 
 export const Route = createFileRoute("/_authenticated/history")({
   head: () => ({
@@ -47,19 +48,17 @@ function HistoryPage() {
             {rows.length} scan{rows.length === 1 ? "" : "s"}
           </p>
         </div>
-        <select
+        <AppSelect
           value={meal}
-          onChange={(e) => setMeal(e.target.value)}
+          onValueChange={setMeal}
           aria-label="Filter by meal"
-          className="shrink-0 rounded-lg border border-input bg-white/5 px-3 py-2 text-sm capitalize outline-none focus:border-primary/60"
-        >
-          <option value="all">All meals</option>
-          {MEAL_TYPES.map((m) => (
-            <option key={m} value={m} className="capitalize">
-              {m}
-            </option>
-          ))}
-        </select>
+          options={[
+            { value: "all", label: "All meals" },
+            ...MEAL_TYPES.map((meal) => ({ value: meal, label: meal })),
+          ]}
+          className="w-40 shrink-0"
+          capitalize
+        />
       </header>
 
       {rows.length === 0 ? (

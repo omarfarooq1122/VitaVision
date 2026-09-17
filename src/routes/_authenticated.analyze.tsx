@@ -8,6 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { detectFoodItems } from "@/lib/detect.functions";
 import { allergiesQuery, foodsQuery, profileQuery } from "@/lib/queries";
+import { AppSelect } from "@/components/AppSelect";
 import {
   MEAL_TYPES,
   checkAllergies,
@@ -269,18 +270,14 @@ function Analyze() {
         <label className="text-xs font-medium text-muted-foreground" htmlFor="meal">
           Meal
         </label>
-        <select
+        <AppSelect
           id="meal"
           value={mealType}
-          onChange={(e) => setMealType(e.target.value)}
-          className="mt-1.5 w-full max-w-xs rounded-lg border border-input bg-white/5 px-3 py-2.5 text-sm capitalize outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/30"
-        >
-          {MEAL_TYPES.map((m) => (
-            <option key={m} value={m} className="capitalize">
-              {m}
-            </option>
-          ))}
-        </select>
+          onValueChange={setMealType}
+          options={MEAL_TYPES.map((meal) => ({ value: meal, label: meal }))}
+          className="mt-1.5 max-w-xs"
+          capitalize
+        />
 
         <div className="mt-5">
           <input
