@@ -17,8 +17,8 @@ Continue developing this project in the [Lovable editor](https://lovable.dev/pro
 Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
+git clone [<this-repository-url>](https://github.com/omarfarooq1122/VitaVision.git)
+cd VitaVision
 npm i
 npm run dev
 ```
