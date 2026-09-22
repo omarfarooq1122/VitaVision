@@ -9,6 +9,7 @@ import {
   User,
   Settings as SettingsIcon,
   LogOut,
+  Info,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Brand } from "@/components/Brand";
@@ -26,6 +27,7 @@ const NAV = [
   { to: "/history", label: "History", icon: History },
   { to: "/profile", label: "Profile", icon: User },
   { to: "/settings", label: "Settings", icon: SettingsIcon },
+  { to: "/info", label: "About", icon: Info },
 ] as const;
 
 function AuthenticatedLayout() {
