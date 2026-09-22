@@ -63,6 +63,9 @@ function Landing() {
             <a href="#privacy" className="transition-colors hover:text-foreground">
               Privacy
             </a>
+            <Link to="/info" className="transition-colors hover:text-foreground">
+              About
+            </Link>
           </nav>
           <div className="flex items-center gap-3">
             <Link to="/login" className="hidden text-sm text-muted-foreground hover:text-foreground sm:inline">
