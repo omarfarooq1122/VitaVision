@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { useAuth } from "@/hooks/useAuth";
 import { AuthCard, Field, inputClass, primaryButtonClass } from "@/components/AuthCard";
+import { EmailOtpForm, AuthMethodTabs } from "@/components/EmailOtpForm";
 
 export const Route = createFileRoute("/register")({
   head: () => ({
@@ -32,6 +33,7 @@ function RegisterPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [method, setMethod] = useState<"password" | "code">("password");
 
   useEffect(() => {
     if (!loading && user) navigate({ to: "/dashboard", replace: true });
@@ -102,6 +104,10 @@ function RegisterPage() {
         </>
       }
     >
+      <AuthMethodTabs value={method} onChange={setMethod} />
+      {method === "code" ? (
+        <EmailOtpForm mode="signup" />
+      ) : (
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
         <Field id="name" label="Name">
           <input
@@ -140,6 +146,7 @@ function RegisterPage() {
           {busy ? "Creating account…" : "Create account"}
         </button>
       </form>
+      )}
 
       <div className="my-5 flex items-center gap-3 text-xs text-muted-foreground">
         <span className="h-px flex-1 bg-border" /> or <span className="h-px flex-1 bg-border" />
