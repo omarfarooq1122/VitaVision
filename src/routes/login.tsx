@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { useAuth } from "@/hooks/useAuth";
 import { AuthCard, Field, inputClass, primaryButtonClass } from "@/components/AuthCard";
+import { EmailOtpForm, AuthMethodTabs } from "@/components/EmailOtpForm";
 
 export const Route = createFileRoute("/login")({
   head: () => ({
@@ -25,6 +26,7 @@ function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [method, setMethod] = useState<"password" | "code">("password");
 
   useEffect(() => {
     if (!loading && user) navigate({ to: "/dashboard", replace: true });
@@ -80,6 +82,10 @@ function LoginPage() {
         </>
       }
     >
+      <AuthMethodTabs value={method} onChange={setMethod} />
+      {method === "code" ? (
+        <EmailOtpForm mode="signin" />
+      ) : (
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
         <Field id="email" label="Email">
           <input
@@ -108,6 +114,7 @@ function LoginPage() {
           {busy ? "Signing in…" : "Sign in"}
         </button>
       </form>
+      )}
 
       <div className="my-5 flex items-center gap-3 text-xs text-muted-foreground">
         <span className="h-px flex-1 bg-border" /> or <span className="h-px flex-1 bg-border" />
