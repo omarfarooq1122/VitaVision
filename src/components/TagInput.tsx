@@ -64,7 +64,7 @@ export function TagInput({
         }}
         onBlur={() => add(draft)}
         placeholder={placeholder}
-        className="mt-2 w-full rounded-lg border border-input bg-foreground/5 px-3 py-2.5 text-sm outline-none placeholder:text-muted-foreground/60 focus:border-primary/60 focus:ring-2 focus:ring-primary/30"
+        className="mt-2 w-full min-h-11 rounded-lg border border-input bg-card/70 px-3.5 py-2.5 text-base outline-none transition-[border-color,box-shadow] placeholder:text-muted-foreground/60 focus:border-primary/60 focus:ring-2 focus:ring-primary/25 sm:text-sm"
       />
       {suggestions.length > 0 ? (
         <div className="mt-2 flex flex-wrap gap-1.5">
