@@ -1,3 +1,4 @@
+import { ThemeToggle } from "@/components/ThemeToggle";
 import type { ReactNode } from "react";
 import { Brand } from "./Brand";
 import { Glow } from "./Glow";
@@ -17,8 +18,9 @@ export function AuthCard({
     <div className="relative grid min-h-screen place-items-center px-4 py-10">
       <Glow />
       <div className="relative w-full max-w-md">
-        <div className="flex justify-center">
+        <div className="flex items-center justify-between">
           <Brand />
+          <ThemeToggle />
         </div>
         <div className="mt-6 rounded-3xl glass p-7">
           <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>

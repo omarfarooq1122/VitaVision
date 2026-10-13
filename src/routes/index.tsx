@@ -1,3 +1,4 @@
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check, ScanLine } from "lucide-react";
 import { Glow } from "@/components/Glow";
@@ -68,6 +69,7 @@ function Landing() {
             </Link>
           </nav>
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <Link to="/login" className="hidden text-sm text-muted-foreground hover:text-foreground sm:inline">
               Sign in
             </Link>
