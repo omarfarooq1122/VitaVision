@@ -5,7 +5,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { useAuth } from "@/hooks/useAuth";
 import { AuthCard, Field, inputClass, primaryButtonClass } from "@/components/AuthCard";
-import { EmailOtpForm, AuthMethodTabs } from "@/components/EmailOtpForm";
 
 export const Route = createFileRoute("/register")({
   head: () => ({
@@ -33,7 +32,6 @@ function RegisterPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
-  const [method, setMethod] = useState<"password" | "code">("password");
 
   useEffect(() => {
     if (!loading && user) navigate({ to: "/dashboard", replace: true });
