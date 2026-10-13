@@ -1,3 +1,4 @@
+import { ThemeToggle } from "@/components/ThemeToggle";
 import type { ReactNode } from "react";
 import { Brand } from "./Brand";
 import { Glow } from "./Glow";
@@ -17,8 +18,9 @@ export function AuthCard({
     <div className="relative grid min-h-screen place-items-center px-4 py-10">
       <Glow />
       <div className="relative w-full max-w-md">
-        <div className="flex justify-center">
+        <div className="flex items-center justify-between">
           <Brand />
+          <ThemeToggle />
         </div>
         <div className="mt-6 rounded-3xl glass p-7">
           <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
@@ -58,7 +60,7 @@ export function Field({
 }
 
 export const inputClass =
-  "w-full rounded-lg border border-input bg-white/5 px-3 py-2.5 text-sm outline-none placeholder:text-muted-foreground/60 focus:border-primary/60 focus:ring-2 focus:ring-primary/30";
+  "w-full rounded-lg border border-input bg-foreground/5 px-3 py-2.5 text-sm outline-none placeholder:text-muted-foreground/60 focus:border-primary/60 focus:ring-2 focus:ring-primary/30";
 
 export const primaryButtonClass =
   "w-full rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground ring-1 ring-primary/40 transition-transform hover:-translate-y-0.5 disabled:pointer-events-none disabled:opacity-60";

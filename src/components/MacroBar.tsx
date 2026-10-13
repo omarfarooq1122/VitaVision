@@ -25,7 +25,7 @@ export function MacroBar({ label, value, target, unit = "", tone = "primary" }: 
         </span>
       </div>
       <div
-        className="mt-1.5 h-2 overflow-hidden rounded-full bg-white/10"
+        className="mt-1.5 h-2 overflow-hidden rounded-full bg-foreground/10"
         role="progressbar"
         aria-label={`${label} progress`}
         aria-valuenow={pct}

@@ -156,7 +156,7 @@ function ResultPage() {
             onClick={toggleLogged}
             className={`inline-flex items-center gap-1.5 rounded-lg px-4 py-2.5 text-sm font-medium transition-transform hover:-translate-y-0.5 ${
               analysis.logged
-                ? "border border-border bg-white/5"
+                ? "border border-border bg-foreground/5"
                 : "bg-primary text-primary-foreground ring-1 ring-primary/40"
             }`}
           >
@@ -166,7 +166,7 @@ function ResultPage() {
           <button
             onClick={deleteAnalysis}
             aria-label="Delete analysis"
-            className="rounded-lg border border-border bg-white/5 px-3 py-2.5 text-muted-foreground hover:text-rose"
+            className="rounded-lg border border-border bg-foreground/5 px-3 py-2.5 text-muted-foreground hover:text-rose"
           >
             <Trash2 className="size-4" aria-hidden="true" />
           </button>
@@ -238,7 +238,7 @@ function ResultPage() {
               ["Fat", `${analysis.fat} g`],
               ["Fiber", `${analysis.fiber} g`],
             ].map(([k, v]) => (
-              <div key={k} className="rounded-lg bg-white/5 p-3">
+              <div key={k} className="rounded-lg bg-foreground/5 p-3">
                 <dt className="text-xs text-muted-foreground">{k}</dt>
                 <dd className="mt-1 font-display text-lg">{v}</dd>
               </div>
@@ -261,7 +261,7 @@ function ResultPage() {
                     {row.food_name}
                     {row.quantity > 1 ? ` × ${row.quantity}` : ""}
                     {row.corrected ? (
-                      <span className="ml-2 rounded bg-white/10 px-1.5 py-0.5 text-[10px] text-muted-foreground">
+                      <span className="ml-2 rounded bg-foreground/10 px-1.5 py-0.5 text-[10px] text-muted-foreground">
                         corrected
                       </span>
                     ) : null}
@@ -277,13 +277,13 @@ function ResultPage() {
                       setEditing(editing === row.id ? null : row.id);
                       setCorrection(row.food_name);
                     }}
-                    className="rounded-md border border-border bg-white/5 px-2 py-1 hover:text-primary"
+                    className="rounded-md border border-border bg-foreground/5 px-2 py-1 hover:text-primary"
                   >
                     Correct
                   </button>
                   <button
                     onClick={() => removeItem(row)}
-                    className="rounded-md border border-border bg-white/5 px-2 py-1 hover:text-rose"
+                    className="rounded-md border border-border bg-foreground/5 px-2 py-1 hover:text-rose"
                   >
                     Remove
                   </button>
@@ -295,7 +295,7 @@ function ResultPage() {
                     value={correction}
                     onChange={(e) => setCorrection(e.target.value)}
                     aria-label={`Correct ${row.food_name}`}
-                    className="min-w-0 flex-1 rounded-lg border border-input bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/30"
+                    className="min-w-0 flex-1 rounded-lg border border-input bg-foreground/5 px-3 py-2 text-sm outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/30"
                     placeholder="Correct food name"
                   />
                   <button

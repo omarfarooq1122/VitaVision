@@ -1,3 +1,4 @@
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -62,6 +63,7 @@ function AuthenticatedLayout() {
         <header className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 sm:flex sm:justify-between">
           <Brand to="/dashboard" />
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <span className="hidden truncate text-xs text-muted-foreground sm:inline">
               {user.email}
             </span>
@@ -70,7 +72,7 @@ function AuthenticatedLayout() {
                 await signOut();
                 navigate({ to: "/", replace: true });
               }}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-white/5 px-3 py-1.5 text-xs font-medium transition-transform hover:-translate-y-0.5"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-foreground/5 px-3 py-1.5 text-xs font-medium transition-transform hover:-translate-y-0.5"
             >
               <LogOut className="size-3.5" aria-hidden="true" /> Sign out
             </button>

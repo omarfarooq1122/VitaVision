@@ -107,7 +107,7 @@ function HistoryPage() {
                   </div>
                   <span
                     className={`h-fit shrink-0 rounded-md px-2 py-0.5 text-xs ${
-                      a.logged ? "bg-primary/15 text-primary" : "bg-white/5 text-muted-foreground"
+                      a.logged ? "bg-primary/15 text-primary" : "bg-foreground/5 text-muted-foreground"
                     }`}
                   >
                     {a.logged ? "Logged" : "Not logged"}

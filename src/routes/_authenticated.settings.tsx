@@ -86,7 +86,7 @@ function SettingsPage() {
         <div className="mt-4 flex flex-wrap gap-3">
           <button
             onClick={exportData}
-            className="rounded-lg border border-border bg-white/5 px-4 py-2.5 text-sm"
+            className="rounded-lg border border-border bg-foreground/5 px-4 py-2.5 text-sm"
           >
             Export my data (JSON)
           </button>
@@ -107,7 +107,7 @@ function SettingsPage() {
             await signOut();
             navigate({ to: "/", replace: true });
           }}
-          className="mt-3 rounded-lg border border-border bg-white/5 px-4 py-2.5 text-sm"
+          className="mt-3 rounded-lg border border-border bg-foreground/5 px-4 py-2.5 text-sm"
         >
           Sign out
         </button>

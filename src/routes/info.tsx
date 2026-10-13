@@ -1,3 +1,4 @@
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Github,
@@ -87,6 +88,7 @@ function InfoPage() {
         <header className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 md:flex md:justify-between">
           <Brand />
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <Link
               to="/"
               className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -166,7 +168,7 @@ function InfoPage() {
               {STACK.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-md border border-border bg-white/5 px-2.5 py-1 text-xs font-medium"
+                  className="rounded-md border border-border bg-foreground/5 px-2.5 py-1 text-xs font-medium"
                 >
                   {tech}
                 </span>
