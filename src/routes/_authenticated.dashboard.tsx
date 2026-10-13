@@ -152,10 +152,10 @@ function Dashboard() {
                 <XAxis dataKey="day" stroke="var(--muted-foreground)" fontSize={11} tickLine={false} axisLine={false} />
                 <YAxis stroke="var(--muted-foreground)" fontSize={11} tickLine={false} axisLine={false} width={38} />
                 <Tooltip
-                  cursor={{ fill: "rgba(255,255,255,0.05)" }}
+                  cursor={{ fill: "color-mix(in oklab, var(--foreground) 6%, transparent)" }}
                   contentStyle={{
-                    background: "rgba(16,20,24,0.95)",
-                    border: "1px solid rgba(255,255,255,0.12)",
+                    background: "var(--popover)", color: "var(--popover-foreground)",
+                    border: "1px solid var(--border)",
                     borderRadius: 12,
                     fontSize: 12,
                   }}

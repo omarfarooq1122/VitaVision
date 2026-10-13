@@ -112,13 +112,13 @@
 
 @utility glass {
   border: 1px solid var(--border);
-  background: color-mix(in oklab, white 4%, transparent);
+  background: var(--glass-bg);
   backdrop-filter: blur(18px);
 }
 
 @utility glass-solid {
   border: 1px solid var(--border);
-  background: color-mix(in oklab, var(--ink-soft) 65%, transparent);
+  background: color-mix(in oklab, var(--card) 80%, transparent);
   backdrop-filter: blur(18px);
 }
 
