@@ -104,10 +104,6 @@ function RegisterPage() {
         </>
       }
     >
-      <AuthMethodTabs value={method} onChange={setMethod} />
-      {method === "code" ? (
-        <EmailOtpForm mode="signup" />
-      ) : (
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
         <Field id="name" label="Name">
           <input

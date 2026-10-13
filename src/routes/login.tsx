@@ -82,10 +82,6 @@ function LoginPage() {
         </>
       }
     >
-      <AuthMethodTabs value={method} onChange={setMethod} />
-      {method === "code" ? (
-        <EmailOtpForm mode="signin" />
-      ) : (
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
         <Field id="email" label="Email">
           <input
