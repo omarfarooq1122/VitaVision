@@ -60,7 +60,7 @@ export function Field({
 }
 
 export const inputClass =
-  "w-full rounded-lg border border-input bg-foreground/5 px-3 py-2.5 text-sm outline-none placeholder:text-muted-foreground/60 focus:border-primary/60 focus:ring-2 focus:ring-primary/30";
+  "w-full min-h-11 rounded-lg border border-input bg-card/70 px-3.5 py-2.5 text-base outline-none transition-[border-color,box-shadow] placeholder:text-muted-foreground/60 focus:border-primary/60 focus:ring-2 focus:ring-primary/25 sm:text-sm";
 
 export const primaryButtonClass =
   "w-full rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground ring-1 ring-primary/40 transition-transform hover:-translate-y-0.5 disabled:pointer-events-none disabled:opacity-60";

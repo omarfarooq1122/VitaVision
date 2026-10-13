@@ -14,7 +14,7 @@ import {
 import type { Profile } from "@/lib/queries";
 
 const inputClass =
-  "w-full rounded-lg border border-input bg-foreground/5 px-3 py-2.5 text-sm outline-none placeholder:text-muted-foreground/60 focus:border-primary/60 focus:ring-2 focus:ring-primary/30";
+  "w-full min-h-11 rounded-lg border border-input bg-card/70 px-3.5 py-2.5 text-base outline-none transition-[border-color,box-shadow] placeholder:text-muted-foreground/60 focus:border-primary/60 focus:ring-2 focus:ring-primary/25 sm:text-sm [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none";
 
 export type ProfileDraft = {
   name: string;
