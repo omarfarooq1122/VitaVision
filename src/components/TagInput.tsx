@@ -38,7 +38,7 @@ export function TagInput({
         {values.map((v) => (
           <span
             key={v}
-            className="inline-flex items-center gap-1 rounded-md border border-border bg-white/5 px-2 py-1 text-xs"
+            className="inline-flex items-center gap-1 rounded-md border border-border bg-foreground/5 px-2 py-1 text-xs"
           >
             {v}
             <button
@@ -64,7 +64,7 @@ export function TagInput({
         }}
         onBlur={() => add(draft)}
         placeholder={placeholder}
-        className="mt-2 w-full rounded-lg border border-input bg-white/5 px-3 py-2.5 text-sm outline-none placeholder:text-muted-foreground/60 focus:border-primary/60 focus:ring-2 focus:ring-primary/30"
+        className="mt-2 w-full rounded-lg border border-input bg-foreground/5 px-3 py-2.5 text-sm outline-none placeholder:text-muted-foreground/60 focus:border-primary/60 focus:ring-2 focus:ring-primary/30"
       />
       {suggestions.length > 0 ? (
         <div className="mt-2 flex flex-wrap gap-1.5">

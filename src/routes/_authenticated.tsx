@@ -70,7 +70,7 @@ function AuthenticatedLayout() {
                 await signOut();
                 navigate({ to: "/", replace: true });
               }}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-white/5 px-3 py-1.5 text-xs font-medium transition-transform hover:-translate-y-0.5"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-foreground/5 px-3 py-1.5 text-xs font-medium transition-transform hover:-translate-y-0.5"
             >
               <LogOut className="size-3.5" aria-hidden="true" /> Sign out
             </button>

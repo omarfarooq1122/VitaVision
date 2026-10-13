@@ -155,7 +155,7 @@ function RegisterPage() {
       <button
         type="button"
         onClick={handleGoogle}
-        className="w-full rounded-lg border border-border bg-white/5 px-4 py-2.5 text-sm font-medium transition-transform hover:-translate-y-0.5"
+        className="w-full rounded-lg border border-border bg-foreground/5 px-4 py-2.5 text-sm font-medium transition-transform hover:-translate-y-0.5"
       >
         Continue with Google
       </button>

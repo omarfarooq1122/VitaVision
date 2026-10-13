@@ -166,7 +166,7 @@ function InfoPage() {
               {STACK.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-md border border-border bg-white/5 px-2.5 py-1 text-xs font-medium"
+                  className="rounded-md border border-border bg-foreground/5 px-2.5 py-1 text-xs font-medium"
                 >
                   {tech}
                 </span>

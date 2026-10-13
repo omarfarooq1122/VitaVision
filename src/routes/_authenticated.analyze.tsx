@@ -309,7 +309,7 @@ function Analyze() {
                   type="button"
                   onClick={stopCamera}
                   aria-label="Close camera"
-                  className="grid size-10 place-items-center rounded-full border border-border bg-white/10 text-foreground"
+                  className="grid size-10 place-items-center rounded-full border border-border bg-foreground/10 text-foreground"
                 >
                   <X className="size-4" aria-hidden="true" />
                 </button>
@@ -325,7 +325,7 @@ function Analyze() {
                   type="button"
                   onClick={() => startCamera(facing === "environment" ? "user" : "environment")}
                   aria-label="Switch camera"
-                  className="grid size-10 place-items-center rounded-full border border-border bg-white/10 text-foreground"
+                  className="grid size-10 place-items-center rounded-full border border-border bg-foreground/10 text-foreground"
                 >
                   <RefreshCw className="size-4" aria-hidden="true" />
                 </button>
@@ -336,7 +336,7 @@ function Analyze() {
               <button
                 type="button"
                 onClick={() => startCamera()}
-                className="grid w-full place-items-center gap-2 rounded-xl border border-dashed border-border bg-white/[0.03] py-14 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
+                className="grid w-full place-items-center gap-2 rounded-xl border border-dashed border-border bg-foreground/[0.3] py-14 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
               >
                 <Camera className="size-6" aria-hidden="true" />
                 Open camera and take a photo of your meal
@@ -379,7 +379,7 @@ function Analyze() {
                 void startCamera();
               }}
               disabled={busy}
-              className="rounded-lg border border-border bg-white/5 px-4 py-2.5 text-sm disabled:opacity-60"
+              className="rounded-lg border border-border bg-foreground/5 px-4 py-2.5 text-sm disabled:opacity-60"
             >
               Retake photo
             </button>

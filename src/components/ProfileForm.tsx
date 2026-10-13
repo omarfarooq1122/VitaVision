@@ -14,7 +14,7 @@ import {
 import type { Profile } from "@/lib/queries";
 
 const inputClass =
-  "w-full rounded-lg border border-input bg-white/5 px-3 py-2.5 text-sm outline-none placeholder:text-muted-foreground/60 focus:border-primary/60 focus:ring-2 focus:ring-primary/30";
+  "w-full rounded-lg border border-input bg-foreground/5 px-3 py-2.5 text-sm outline-none placeholder:text-muted-foreground/60 focus:border-primary/60 focus:ring-2 focus:ring-primary/30";
 
 export type ProfileDraft = {
   name: string;
@@ -301,7 +301,7 @@ export function ProfileForm({
             ["Fat", `${targets.fat} g`],
             ["Fiber", `${targets.fiber} g`],
           ].map(([k, v]) => (
-            <div key={k} className="rounded-lg bg-white/5 p-3">
+            <div key={k} className="rounded-lg bg-foreground/5 p-3">
               <dt className="text-xs text-muted-foreground">{k}</dt>
               <dd className="mt-1 font-display text-lg">{v}</dd>
             </div>

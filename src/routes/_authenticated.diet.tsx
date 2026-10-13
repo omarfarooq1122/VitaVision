@@ -172,7 +172,7 @@ function DietPage() {
             {engine.limit.map((l) => (
               <span
                 key={l}
-                className="rounded-md border border-border bg-white/5 px-2 py-1 text-xs text-muted-foreground"
+                className="rounded-md border border-border bg-foreground/5 px-2 py-1 text-xs text-muted-foreground"
               >
                 {l}
               </span>

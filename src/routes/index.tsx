@@ -105,19 +105,19 @@ function Landing() {
                   </Link>
                   <Link
                     to="/login"
-                    className="rounded-lg border border-border bg-white/5 px-4 py-2.5 text-sm font-medium transition-transform hover:-translate-y-0.5"
+                    className="rounded-lg border border-border bg-foreground/5 px-4 py-2.5 text-sm font-medium transition-transform hover:-translate-y-0.5"
                   >
                     I already have an account
                   </Link>
                 </div>
                 <div className="mt-8 flex flex-wrap gap-2.5 text-xs text-muted-foreground">
-                  <span className="rounded-md border border-border bg-white/5 px-2.5 py-1">
+                  <span className="rounded-md border border-border bg-foreground/5 px-2.5 py-1">
                     Confidence shown per item
                   </span>
-                  <span className="rounded-md border border-border bg-white/5 px-2.5 py-1">
+                  <span className="rounded-md border border-border bg-foreground/5 px-2.5 py-1">
                     Est. weight per item
                   </span>
-                  <span className="rounded-md border border-border bg-white/5 px-2.5 py-1">
+                  <span className="rounded-md border border-border bg-foreground/5 px-2.5 py-1">
                     Allergy-aware
                   </span>
                 </div>
@@ -242,7 +242,7 @@ function Landing() {
                     <span className="text-muted-foreground">{row.label}</span>
                     <span className="text-muted-foreground">tracked daily</span>
                   </div>
-                  <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-white/10">
+                  <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-foreground/10">
                     <div className={`h-full rounded-full ${row.tone}`} style={{ width: row.w }} />
                   </div>
                 </div>

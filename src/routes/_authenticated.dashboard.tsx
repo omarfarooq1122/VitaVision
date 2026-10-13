@@ -148,9 +148,9 @@ function Dashboard() {
           <div className="mt-4 h-56">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={week}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" vertical={false} />
-                <XAxis dataKey="day" stroke="rgba(255,255,255,0.45)" fontSize={11} tickLine={false} axisLine={false} />
-                <YAxis stroke="rgba(255,255,255,0.45)" fontSize={11} tickLine={false} axisLine={false} width={38} />
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
+                <XAxis dataKey="day" stroke="var(--muted-foreground)" fontSize={11} tickLine={false} axisLine={false} />
+                <YAxis stroke="var(--muted-foreground)" fontSize={11} tickLine={false} axisLine={false} width={38} />
                 <Tooltip
                   cursor={{ fill: "rgba(255,255,255,0.05)" }}
                   contentStyle={{
@@ -196,7 +196,7 @@ function Dashboard() {
                 </div>
                 <span
                   className={`shrink-0 rounded-md px-2 py-0.5 text-xs ${
-                    a.logged ? "bg-primary/15 text-primary" : "bg-white/5 text-muted-foreground"
+                    a.logged ? "bg-primary/15 text-primary" : "bg-foreground/5 text-muted-foreground"
                   }`}
                 >
                   {a.logged ? "Logged" : "Not logged"}
