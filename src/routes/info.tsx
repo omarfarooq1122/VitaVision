@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { Glow } from "@/components/Glow";
 import { Brand } from "@/components/Brand";
+import { useAuth } from "@/hooks/useAuth";
 
 export const Route = createFileRoute("/info")({
   head: () => ({
