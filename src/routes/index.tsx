@@ -69,13 +69,19 @@ function Landing() {
             </Link>
           </nav>
           <div className="flex items-center gap-3">
+            <Link
+              to="/info"
+              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground md:hidden"
+            >
+              About
+            </Link>
             <ThemeToggle />
             <Link to="/login" className="hidden text-sm text-muted-foreground hover:text-foreground sm:inline">
               Sign in
             </Link>
             <Link
               to="/register"
-              className="rounded-lg bg-primary px-3.5 py-2 text-sm font-medium text-primary-foreground ring-1 ring-primary/40 transition-transform hover:-translate-y-0.5"
+              className="hidden rounded-lg bg-primary px-3.5 py-2 text-sm font-medium text-primary-foreground ring-1 ring-primary/40 transition-transform hover:-translate-y-0.5 sm:inline-flex"
             >
               Open dashboard
             </Link>

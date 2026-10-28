@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { Glow } from "@/components/Glow";
 import { Brand } from "@/components/Brand";
+import { useAuth } from "@/hooks/useAuth";
 
 export const Route = createFileRoute("/info")({
   head: () => ({
@@ -80,6 +81,8 @@ const PIPELINE = [
 const STACK = ["React", "Vite", "FastAPI", "Python", "YOLO", "PyTorch", "OpenCV"] as const;
 
 function InfoPage() {
+  const { user, loading } = useAuth();
+  const signedIn = !loading && !!user;
   return (
     <div className="relative min-h-screen overflow-hidden">
       <Glow />
@@ -89,18 +92,29 @@ function InfoPage() {
           <Brand />
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            <Link
-              to="/"
-              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <ArrowLeft className="size-4" aria-hidden="true" /> Back home
-            </Link>
-            <Link
-              to="/register"
-              className="rounded-lg bg-primary px-3.5 py-2 text-sm font-medium text-primary-foreground ring-1 ring-primary/40 transition-transform hover:-translate-y-0.5"
-            >
-              Open dashboard
-            </Link>
+            {signedIn ? (
+              <Link
+                to="/dashboard"
+                className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                <ArrowLeft className="size-4" aria-hidden="true" /> Back to dashboard
+              </Link>
+            ) : (
+              <>
+                <Link
+                  to="/"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <ArrowLeft className="size-4" aria-hidden="true" /> Back home
+                </Link>
+                <Link
+                  to="/register"
+                  className="rounded-lg bg-primary px-3.5 py-2 text-sm font-medium text-primary-foreground ring-1 ring-primary/40 transition-transform hover:-translate-y-0.5"
+                >
+                  Open dashboard
+                </Link>
+              </>
+            )}
           </div>
         </header>
 
