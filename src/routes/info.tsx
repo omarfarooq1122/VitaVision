@@ -81,6 +81,8 @@ const PIPELINE = [
 const STACK = ["React", "Vite", "FastAPI", "Python", "YOLO", "PyTorch", "OpenCV"] as const;
 
 function InfoPage() {
+  const { user, loading } = useAuth();
+  const signedIn = !loading && !!user;
   return (
     <div className="relative min-h-screen overflow-hidden">
       <Glow />
