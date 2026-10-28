@@ -69,6 +69,12 @@ function Landing() {
             </Link>
           </nav>
           <div className="flex items-center gap-3">
+            <Link
+              to="/info"
+              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground md:hidden"
+            >
+              About
+            </Link>
             <ThemeToggle />
             <Link to="/login" className="hidden text-sm text-muted-foreground hover:text-foreground sm:inline">
               Sign in
