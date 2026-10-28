@@ -81,7 +81,7 @@ function Landing() {
             </Link>
             <Link
               to="/register"
-              className="rounded-lg bg-primary px-3.5 py-2 text-sm font-medium text-primary-foreground ring-1 ring-primary/40 transition-transform hover:-translate-y-0.5"
+              className="hidden rounded-lg bg-primary px-3.5 py-2 text-sm font-medium text-primary-foreground ring-1 ring-primary/40 transition-transform hover:-translate-y-0.5 sm:inline-flex"
             >
               Open dashboard
             </Link>
