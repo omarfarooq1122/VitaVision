@@ -69,7 +69,6 @@ function Landing() {
             </Link>
           </nav>
           <GuestActions aboutClass="md:hidden" showDashboard />
-        </div>
         </header>
 
         <section className="relative mt-10 md:mt-16">
