@@ -1,4 +1,5 @@
 import { GuestActions } from "@/components/GuestActions";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Github,
@@ -91,14 +92,16 @@ function InfoPage() {
         <header className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 md:flex md:justify-between">
           <Brand />
           <div className="flex items-center gap-3">
-            <ThemeToggle />
             {signedIn ? (
-              <Link
-                to="/dashboard"
-                className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <ArrowLeft className="size-4" aria-hidden="true" /> Back to dashboard
-              </Link>
+              <>
+                <ThemeToggle />
+                <Link
+                  to="/dashboard"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <ArrowLeft className="size-4" aria-hidden="true" /> Back to dashboard
+                </Link>
+              </>
             ) : (
               <>
                 <Link

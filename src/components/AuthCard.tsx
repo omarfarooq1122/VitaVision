@@ -25,7 +25,10 @@ export function AuthCard({
       <div className="relative w-full max-w-md">
         <div className="flex items-center justify-between gap-2">
           <Brand />
-          <GuestActions signInTo={ctaTo} signInLabel={ctaLabel} />
+          <GuestActions
+            {...(ctaTo ? { signInTo: ctaTo } : {})}
+            {...(ctaLabel ? { signInLabel: ctaLabel } : {})}
+          />
         </div>
         <div className="mt-6 rounded-3xl glass p-7">
           <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
