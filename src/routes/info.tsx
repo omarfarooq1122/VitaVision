@@ -103,16 +103,11 @@ function InfoPage() {
               <>
                 <Link
                   to="/"
-                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  className="hidden items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
                 >
                   <ArrowLeft className="size-4" aria-hidden="true" /> Back home
                 </Link>
-                <Link
-                  to="/register"
-                  className="rounded-lg bg-primary px-3.5 py-2 text-sm font-medium text-primary-foreground ring-1 ring-primary/40 transition-transform hover:-translate-y-0.5"
-                >
-                  Open dashboard
-                </Link>
+                <GuestActions showAbout={false} showDashboard />
               </>
             )}
           </div>

@@ -1,4 +1,4 @@
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { GuestActions } from "@/components/GuestActions";
 import type { ReactNode } from "react";
 import { Brand } from "./Brand";
 import { Glow } from "./Glow";
@@ -8,19 +8,24 @@ export function AuthCard({
   subtitle,
   children,
   footer,
+  ctaTo,
+  ctaLabel,
 }: {
   title: string;
   subtitle: string;
   children: ReactNode;
   footer: ReactNode;
+  /** Header call-to-action for pages that already are a sign-in/register form. */
+  ctaTo?: "/login" | "/register";
+  ctaLabel?: string;
 }) {
   return (
     <div className="relative grid min-h-screen place-items-center px-4 py-10">
       <Glow />
       <div className="relative w-full max-w-md">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-2">
           <Brand />
-          <ThemeToggle />
+          <GuestActions signInTo={ctaTo} signInLabel={ctaLabel} />
         </div>
         <div className="mt-6 rounded-3xl glass p-7">
           <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
