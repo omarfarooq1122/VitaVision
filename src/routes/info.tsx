@@ -1,4 +1,4 @@
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { GuestActions } from "@/components/GuestActions";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Github,
