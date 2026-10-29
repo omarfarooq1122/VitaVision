@@ -71,6 +71,8 @@ function LoginPage() {
     <AuthCard
       title="Sign in"
       subtitle="Pick up where your nutrition left off."
+      ctaTo="/register"
+      ctaLabel="Create account"
       footer={
         <>
           New here?{" "}

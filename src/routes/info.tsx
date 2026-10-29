@@ -1,3 +1,4 @@
+import { GuestActions } from "@/components/GuestActions";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
@@ -91,28 +92,25 @@ function InfoPage() {
         <header className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 md:flex md:justify-between">
           <Brand />
           <div className="flex items-center gap-3">
-            <ThemeToggle />
             {signedIn ? (
-              <Link
-                to="/dashboard"
-                className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <ArrowLeft className="size-4" aria-hidden="true" /> Back to dashboard
-              </Link>
+              <>
+                <ThemeToggle />
+                <Link
+                  to="/dashboard"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <ArrowLeft className="size-4" aria-hidden="true" /> Back to dashboard
+                </Link>
+              </>
             ) : (
               <>
                 <Link
                   to="/"
-                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  className="hidden items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
                 >
                   <ArrowLeft className="size-4" aria-hidden="true" /> Back home
                 </Link>
-                <Link
-                  to="/register"
-                  className="rounded-lg bg-primary px-3.5 py-2 text-sm font-medium text-primary-foreground ring-1 ring-primary/40 transition-transform hover:-translate-y-0.5"
-                >
-                  Open dashboard
-                </Link>
+                <GuestActions showAbout={false} showDashboard />
               </>
             )}
           </div>

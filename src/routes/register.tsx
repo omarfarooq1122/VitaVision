@@ -93,6 +93,8 @@ function RegisterPage() {
     <AuthCard
       title="Create your account"
       subtitle="Understand your food. Personalize your nutrition."
+      ctaTo="/login"
+      ctaLabel="Sign in"
       footer={
         <>
           Already have an account?{" "}
